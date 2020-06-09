@@ -1,47 +1,146 @@
-import API from '../api';
+import {ManagePayment} from '../service';
+import {
+    GetPaymentMethod,
+    PostPaymentMethod,
+    UpdatePaymentMethod,
+    DeletePaymentMethod
+} from '../constants';
 
-// export const AmbilJson = () => {
+export function GetPayments() {
 
-//     const data = API.get("/posts");
-
-//     return {
-//         type: "AMBIL_JSON",
-//         data: data
-//     }
-// }
-
-//Use Middleware
-export const AmbilJson = () => async dispatch => {
-
-    const data = await API.get("/posts");
-
-    dispatch({
-        type: "AMBIL_JSON",
-        data: data
-    })
-}
-
-
-// Actoin Creator
-export const AmbilData = () => {
-    const data = [
-        {id: 1, nama: "Endang Jaenudin",peran: "Ayah", tanggalLahir: "06 Juni 1963"},
-        {id: 2, nama: "Nia Kurniawati Zenab",peran: "Ibu", tanggalLahir: "01 Februari 1971"},
-        {id: 3, nama: "Alifa Nur Zaini",peran: "Anak ke-1", tanggalLahir: "26 Maret 1995"},
-        {id: 4, nama: "Muhammad Gifar Zaini",peran: "Anak ke-2", tanggalLahir: "06 November 1997"},
-        {id: 5, nama: "Theta Trinanda Zaini",peran: "Anak ke-3", tanggalLahir: "21 Desember 2000"}
-    ]
-
-    //Action
-    return {
-        type: "AMBIL_DATA",
-        data: data
+    return dispatch => {
+        ManagePayment.GetPayment()
+        .then(
+            response => {
+              const data = response;
+              console.log(data)
+              if (response.status === 200) {
+                dispatch(success(data))
+              }
+            }
+        )
+        .catch(
+            error => {
+                const data = error.response;
+                console.log(data)
+                if (data.status === 401) {
+                console.log(data)
+                }
+                dispatch(failure(data));
+            }
+        )
     }
+    function success(GetPayments) { return { type: GetPaymentMethod.GET_PAYMENT_SUCCESS, payload: { GetPayment: GetPayments } } }
+    function failure(GetPayments) { return { type: GetPaymentMethod.GET_PAYMENT_FAILURE, payload: { GetPayment: GetPayments } } }
 }
 
-export const PilihNama = (data) => {
-    return {
-        type: "PILIH_NAMA",
-        data: data
+export function GetPaymentById(id) {
+
+    return dispatch => {
+        ManagePayment.GetPaymentById(id)
+          .then(
+            response => {
+              const data = response.data;
+              console.log(data)
+              if (data.status !== undefined) {
+                dispatch(success(data))
+              }
+            }
+          )
+          .catch(
+              error => {
+                const data = error.response;
+                console.log(data)
+                if (data.status === 401) {
+                  console.log(data)
+                }
+                dispatch(failure(data));
+              }
+          )
+      }
+      function success(GetPaymentById) { return { type: GetPaymentMethod.GET_PAYMENT_BY_ID_SUCCESS, payload: { GetPaymentById: GetPaymentById } } }
+      function failure(GetPaymentById) { return { type: GetPaymentMethod.GET_PAYMENT_BY_ID_FAILURE, payload: { GetPaymentById: GetPaymentById } } }
+}
+
+export function PostPayment(name) {
+    return dispatch => {
+      ManagePayment.AddPayment(name)
+        .then(
+          response => {
+            const data = response.data.data;
+            console.log(data)
+            if (response.status === 200) {
+              dispatch(success(data))
+            }
+          }
+        )
+        .catch(
+            error => {
+              const data = error.response;
+              console.log(data)
+              if (data.status === 401) {
+                console.log(data)
+              }
+              dispatch(failure(data));
+            }
+        )
+    }
+    function success(AddPayment) { return { type: PostPaymentMethod.POST_PAYMENT_SUCCESS, payload: { AddPayment: AddPayment } } }
+    function failure(AddPayment) { return { type: PostPaymentMethod.POST_PAYMENT_FAILURE, payload: { AddPayment: AddPayment } } }
+  }
+
+export function UpdatePaymentById(id) {
+
+    return dispatch => {
+        ManagePayment.UpdatePaymentById(id)
+          .then(
+            response => {
+              const data = response.data;
+              console.log(data)
+              if (data.status !== undefined) {
+                dispatch(success(data))
+              }
+            }
+          )
+          .catch(
+              error => {
+                const data = error.response;
+                console.log(data)
+                if (data.status === 401) {
+                  console.log(data)
+                }
+                dispatch(failure(data));
+              }
+          )
+      }
+      function success(UpdatePaymentById) { return { type: UpdatePaymentMethod.UPDATE_PAYMENT_BY_ID_SUCCESS, payload: { UpdatePaymentById: UpdatePaymentById } } }
+      function failure(UpdatePaymentById) { return { type: UpdatePaymentMethod.UPDATE_PAYMENT_BY_ID_FAILURE, payload: { UpdatePaymentById: UpdatePaymentById } } }
+}
+
+export function DeletePaymentById(id) {
+
+    return dispatch => {
+        ManagePayment.DeletePaymentById(id)
+        .then(
+        response => {
+            const data = response.data;
+            console.log(data)
+            if (response.status === 200) {
+                dispatch(success(data))
+                }
+            }
+        )
+        .catch(
+            error => {
+            const data = error.response;
+            console.log(data)
+            if (data.status === 401) {
+                console.log(data)
+            }
+                dispatch(failure(data));
+            }
+        )
+        function success(DeletePaymentById) { return { type: DeletePaymentMethod.DELETE_PAYMENT_BY_ID_SUCCESS, payload: { DeletePayment: DeletePaymentById } } }
+        function failure(DeletePaymentById) { return { type: DeletePaymentMethod.DELETE_PAYMENT_BY_ID_FAILURE, payload: { DeletePayment: DeletePaymentById } } }
     }
 }
