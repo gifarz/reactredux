@@ -6,6 +6,9 @@ import reducers from './reducer';
 import thunk from 'redux-thunk';
 import App from './components/App';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import "datatables.net-dt/js/dataTables.dataTables";
+import "datatables.net-dt/css/jquery.dataTables.min.css";
+
 // const store = createStore(reducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 const store = createStore(reducers, applyMiddleware(thunk));

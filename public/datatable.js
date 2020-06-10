@@ -1,3 +1,3 @@
-window.$(document).ready( function () {
-    window.$('#myTable').DataTable();
-} );
+// window.$(document).ready( function () {
+//     window.$('#myTable').DataTable();
+// } );

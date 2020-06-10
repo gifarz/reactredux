@@ -69,9 +69,9 @@ const UpdatePaymentByIdReducer = (state=initialState, action) => {
 const DeletePaymentByIdReducer = (state=initialState, action) => {
     switch (action.type) {
         case DeletePaymentMethod.DELETE_PAYMENT_BY_ID_SUCCESS:
-            return action.payload.deletePaymentById
+            return action.payload
         case DeletePaymentMethod.DELETE_PAYMENT_BY_ID_FAILURE:
-            return action.payload.deletePaymentById
+            return action.payload
         default:
             return {
                 ...state.deletePaymentById

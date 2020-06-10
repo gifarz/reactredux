@@ -1,46 +1,28 @@
 import React, {useState, useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {GetPayments, DeletePaymentById, PostPayment} from '../action';
-import {Button, Modal} from 'react-bootstrap';
+import {GetPayments, DeletePaymentById, PostPayment, GetPaymentById} from '../action';
+import { EndPoint } from './EndPoint';
+import $ from 'jquery';
 
 const App = (props) => {
 
-    const [payment, setPayment] = useState({
-        name: ""
-    })
-
-    const [show, setShow] = useState(false);
-
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-
     const getPayment = useSelector(state => state.GetPayment);
-    console.log(getPayment);
     const dispatch = useDispatch();
     
     useEffect(()=> {
         dispatch(GetPayments());
+
+        $(document).ready(function () {
+            $('#table').DataTable();
+        });
     }, [])
-
-    const AddPayment = (e) => {
-        e.preventDefault();
-        console.log("check")
-        const {name} = payment;
-        dispatch(PostPayment(name));
-    }
-
-    const handleChange = (e) => {
-        const newPayment = {...payment}
-        [e.target.name] = e.target.value
-        setPayment(newPayment)
-    }
 
     function renderList() {
         if (getPayment.data !== undefined) {
             // console.log('check', getPayment)
             return (
             <div>
-                <table id="myTable" className="table table-bordered table-hover">
+                <table id="table" className="table table-bordered table-hover">
                     <thead>
                     <tr>
                         <th>Id</th>
@@ -72,32 +54,12 @@ const App = (props) => {
             </div>
             )
         }
-    }
+    } 
 
     return (
         <div className="container mt-5">
             {renderList()}
-            <div className="d-flex justify-content-end">
-                <Button variant="primary" onClick={handleShow} >
-                    + Add
-                </Button>
-            </div>
-
-            <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
-                <Modal.Title>Add Payment</Modal.Title>
-                </Modal.Header>
-                <form onSubmit={(e)=> AddPayment(e)}>
-                    <Modal.Body>
-                        <input type="text" className="form-control" name="name" value={payment.name} onChange={(e)=> handleChange(e)} placeholder="payment name"/>
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="primary" type="submit">
-                            Add Payment
-                        </Button>
-                    </Modal.Footer>
-                </form>
-            </Modal>
+            <EndPoint/>
         </div>
     )
 }

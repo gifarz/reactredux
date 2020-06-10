@@ -13,7 +13,7 @@ export function GetPayments() {
         .then(
             response => {
               const data = response;
-              console.log(data)
+              // console.log(data)
               if (response.status === 200) {
                 dispatch(success(data))
               }
@@ -123,10 +123,10 @@ export function DeletePaymentById(id) {
         ManagePayment.DeletePaymentById(id)
         .then(
         response => {
-            const data = response.data;
+            const data = response;
             console.log(data)
             if (response.status === 200) {
-                dispatch(success(data))
+                dispatch(success(id))
                 }
             }
         )
@@ -135,12 +135,12 @@ export function DeletePaymentById(id) {
             const data = error.response;
             console.log(data)
             if (data.status === 401) {
-                console.log(data)
+                console.log(id)
             }
                 dispatch(failure(data));
             }
         )
-        function success(DeletePaymentById) { return { type: DeletePaymentMethod.DELETE_PAYMENT_BY_ID_SUCCESS, payload: { DeletePayment: DeletePaymentById } } }
-        function failure(DeletePaymentById) { return { type: DeletePaymentMethod.DELETE_PAYMENT_BY_ID_FAILURE, payload: { DeletePayment: DeletePaymentById } } }
+        function success(id) { return { type: DeletePaymentMethod.DELETE_PAYMENT_BY_ID_SUCCESS, payload: { DeletePayment: id } } }
+        function failure(id) { return { type: DeletePaymentMethod.DELETE_PAYMENT_BY_ID_FAILURE, payload: { DeletePayment: id } } }
     }
 }
