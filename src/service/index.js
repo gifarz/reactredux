@@ -1,42 +1,54 @@
 import API from '../api';
 
-async function GetPayment() {
-    const response = await API.get("/payments");
-    // console.log(response)
+async function GetEmployee() {
+    const response = await API.get("/users");
+    console.log(response)
     return response;
 }
 
-async function GetPaymentById(id) {
-    const response = await API.get(`/payments/${id}`);
-    // console.log(response)
+async function GetEmployeeById(_id) {
+    const response = await API.get(`/users/${_id}`);
+    console.log(response)
     return response;
 }
 
-async function AddPayment(data) {
+async function AddEmployee(name, age, salary) {
   
-    const response = await API.post("/payments", data);
-    // console.log(response)
+    const form = {
+        name: name,
+        age: age,
+        salary: salary,
+    }
+
+    const response = await API.post("/users", form);
+    console.log(response)
     return response;
 }
 
-async function UpdatePaymentById(id) {
+async function UpdateEmployeeById(_id, name, age, salary) {
   
-    const response = await API.put(`/payments/${id}`);
-    // console.log(response)
+    const form = {
+        name: name,
+        age: age,
+        salary: salary,
+    }
+
+    const response = await API.put(`/users/${_id}`, form);
+    console.log(response)
     return response;
 }
 
-async function DeletePaymentById(id) {
+async function DeleteEmployeeById(_id) {
   
-    const response = await API.delete(`/payments/${id}`);
-    // console.log(response)
+    const response = await API.delete(`/users/${_id}`);
+    console.log(response)
     return response;
 }
 
-export const ManagePayment = {
-    GetPayment,
-    GetPaymentById,
-    AddPayment,
-    UpdatePaymentById,
-    DeletePaymentById
+export const ManageEmployee = {
+    GetEmployee,
+    GetEmployeeById,
+    AddEmployee,
+    UpdateEmployeeById,
+    DeleteEmployeeById
 }

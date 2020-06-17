@@ -1,88 +1,88 @@
 import {combineReducers} from 'redux';
 import {
-    GetPaymentMethod,
-    PostPaymentMethod,
-    UpdatePaymentMethod,
-    DeletePaymentMethod
+    GetEmployeeMethod,
+    PostEmployeeMethod,
+    UpdateEmployeeMethod,
+    DeleteEmployeeMethod
 } from '../constants';
 
 const initialState = {
-    getPayment: {},
-    getPaymentById: {},
-    postPayment: undefined,
-    updatePaymentById: {},
-    deletePaymentById: {}
+    getEmployee: {},
+    getEmployeeById: {},
+    postEmployee: {},
+    updateEmployeeById: {},
+    deleteEmployeeById: {}
 }
 
-const GetPaymentReducer = (state=initialState, action) => {
+const GetEmployeeReducer = (state=initialState, action) => {
     switch (action.type) {
-        case GetPaymentMethod.GET_PAYMENT_SUCCESS:
-            return action.payload.GetPayment
-        case GetPaymentMethod.GET_PAYMENT_FAILURE:
-            return action.payload.GetPayment
+        case GetEmployeeMethod.GET_EMPLOYEE_SUCCESS:
+            return action.payload.GetEmployee
+        case GetEmployeeMethod.GET_EMPLOYEE_FAILURE:
+            return action.payload.GetEmployee
         default:
             return {
-                ...state.getPayment
+                ...state.getEmployee
             }
         }
 }
 
-const GetPaymentByIdReducer = (state=initialState, action) => {
+const GetEmployeeByIdReducer = (state=initialState, action) => {
     switch (action.type) {
-        case GetPaymentMethod.GET_PAYMENT_BY_ID_SUCCESS:
-            return action.payload.getPaymentById
-        case GetPaymentMethod.GET_PAYMENT_BY_ID_FAILURE:
-            return action.payload.getPaymentById
+        case GetEmployeeMethod.GET_EMPLOYEE_BY_ID_SUCCESS:
+            return action.payload
+        case GetEmployeeMethod.GET_EMPLOYEE_BY_ID_FAILURE:
+            return action.payload
         default:
             return {
-                ...state.getPaymentById
+                ...state.getEmployeeById
             }
         }
 }
 
-const PostPaymentReducer = (state=initialState, action) => {
+const PostEmployeeReducer = (state=initialState, action) => {
     switch (action.type) {
-        case PostPaymentMethod.POST_PAYMENT_SUCCESS:
-            return action.payload
-        case PostPaymentMethod.POST_PAYMENT_FAILURE:
-            return action.payload
+        case PostEmployeeMethod.POST_EMPLOYEE_SUCCESS:
+            return action.payload.AddEmployee
+        case PostEmployeeMethod.POST_EMPLOYEE_FAILURE:
+            return action.payload.AddEmployee
         default:
             return {
-                ...state.postPayment
+                ...state.postEmployee
             }
         }            
 }
 
-const UpdatePaymentByIdReducer = (state=initialState, action) => {
+const UpdateEmployeeByIdReducer = (state=initialState, action) => {
     switch (action.type) {
-        case UpdatePaymentMethod.UPDATE_PAYMENT_BY_ID_SUCCESS:
-            return action.payload.updatePaymentById
-        case UpdatePaymentMethod.UPDATE_PAYMENT_BY_ID_FAILURE:
-            return action.payload.updatePaymentById
+        case UpdateEmployeeMethod.UPDATE_EMPLOYEE_BY_ID_SUCCESS:
+            return action.payload
+        case UpdateEmployeeMethod.UPDATE_EMPLOYEE_BY_ID_FAILURE:
+            return action.payload
         default:
             return {
-                ...state.updatePaymentById
+                ...state.updateEmployeeById
             }
         }
 }
 
-const DeletePaymentByIdReducer = (state=initialState, action) => {
+const DeleteEmployeeByIdReducer = (state=initialState, action) => {
     switch (action.type) {
-        case DeletePaymentMethod.DELETE_PAYMENT_BY_ID_SUCCESS:
+        case DeleteEmployeeMethod.DELETE_EMPLOYEE_BY_ID_SUCCESS:
             return action.payload
-        case DeletePaymentMethod.DELETE_PAYMENT_BY_ID_FAILURE:
+        case DeleteEmployeeMethod.DELETE_EMPLOYEE_BY_ID_FAILURE:
             return action.payload
         default:
             return {
-                ...state.deletePaymentById
+                ...state.deleteEmployeeById
             }
         }
 }
 
 export default combineReducers({
-    GetPayment: GetPaymentReducer,
-    GetPaymentById : GetPaymentByIdReducer,
-    PostPayment : PostPaymentReducer,
-    UpdatePaymentById : UpdatePaymentByIdReducer,
-    DeletePaymentById : DeletePaymentByIdReducer
+    GetEmployee: GetEmployeeReducer,
+    GetEmployeeById : GetEmployeeByIdReducer,
+    PostEmployee : PostEmployeeReducer,
+    UpdateEmployeeById : UpdateEmployeeByIdReducer,
+    DeleteEmployeeById : DeleteEmployeeByIdReducer
 })

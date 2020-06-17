@@ -1,20 +1,20 @@
-import {ManagePayment} from '../service';
+import {ManageEmployee} from '../service';
 import {
-    GetPaymentMethod,
-    PostPaymentMethod,
-    UpdatePaymentMethod,
-    DeletePaymentMethod
+    GetEmployeeMethod,
+    PostEmployeeMethod,
+    UpdateEmployeeMethod,
+    DeleteEmployeeMethod
 } from '../constants';
 
-export function GetPayments() {
+export function GetEmployees() {
 
     return dispatch => {
-        ManagePayment.GetPayment()
+        ManageEmployee.GetEmployee()
         .then(
             response => {
               const data = response;
-              // console.log(data)
-              if (response.status === 200) {
+              console.log(data)
+              if (data.status === 200) {
                 dispatch(success(data))
               }
             }
@@ -24,24 +24,24 @@ export function GetPayments() {
                 const data = error.response;
                 console.log(data)
                 if (data.status === 401) {
-                console.log(data)
+                console.log(data.result)
                 }
                 dispatch(failure(data));
             }
         )
     }
-    function success(GetPayments) { return { type: GetPaymentMethod.GET_PAYMENT_SUCCESS, payload: { GetPayment: GetPayments } } }
-    function failure(GetPayments) { return { type: GetPaymentMethod.GET_PAYMENT_FAILURE, payload: { GetPayment: GetPayments } } }
+    function success(GetEmployees) { return { type: GetEmployeeMethod.GET_EMPLOYEE_SUCCESS, payload: { GetEmployee: GetEmployees } } }
+    function failure(GetEmployees) { return { type: GetEmployeeMethod.GET_EMPLOYEE_FAILURE, payload: { GetEmployee: GetEmployees } } }
 }
 
-export function GetPaymentById(id) {
+export function GetEmployeeById(_id) {
 
     return dispatch => {
-        ManagePayment.GetPaymentById(id)
+        ManageEmployee.GetEmployeeById(_id)
           .then(
             response => {
-              const data = response.data;
-              console.log(data)
+              const data = response;
+              console.log(data.data)
               if (data.status !== undefined) {
                 dispatch(success(data))
               }
@@ -58,18 +58,18 @@ export function GetPaymentById(id) {
               }
           )
       }
-      function success(GetPaymentById) { return { type: GetPaymentMethod.GET_PAYMENT_BY_ID_SUCCESS, payload: { GetPaymentById: GetPaymentById } } }
-      function failure(GetPaymentById) { return { type: GetPaymentMethod.GET_PAYMENT_BY_ID_FAILURE, payload: { GetPaymentById: GetPaymentById } } }
+      function success(GetEmployeeId) { return { type: GetEmployeeMethod.GET_EMPLOYEE_BY_ID_SUCCESS, payload: { GetEmployeeId: GetEmployeeId._id } } }
+      function failure(GetEmployeeId) { return { type: GetEmployeeMethod.GET_EMPLOYEE_BY_ID_FAILURE, payload: { GetEmployeeId: GetEmployeeId } } }
 }
 
-export function PostPayment(name) {
+export function PostEmployee(name, age, salary) {
     return dispatch => {
-      ManagePayment.AddPayment(name)
+      ManageEmployee.AddEmployee(name, age, salary)
         .then(
           response => {
-            const data = response.data.data;
+            const data = response;
             console.log(data)
-            if (response.status === 200) {
+            if (data.status === 200) {
               dispatch(success(data))
             }
           }
@@ -85,19 +85,19 @@ export function PostPayment(name) {
             }
         )
     }
-    function success(AddPayment) { return { type: PostPaymentMethod.POST_PAYMENT_SUCCESS, payload: { AddPayment: AddPayment } } }
-    function failure(AddPayment) { return { type: PostPaymentMethod.POST_PAYMENT_FAILURE, payload: { AddPayment: AddPayment } } }
+    function success(AddEmployee) { return { type: PostEmployeeMethod.POST_EMPLOYEE_SUCCESS, payload: { AddEmployee: AddEmployee } } }
+    function failure(AddEmployee) { return { type: PostEmployeeMethod.POST_EMPLOYEE_FAILURE, payload: { AddEmployee: AddEmployee } } }
   }
 
-export function UpdatePaymentById(id) {
+export function UpdateEmployeeById(_id, name, age, salary) {
 
     return dispatch => {
-        ManagePayment.UpdatePaymentById(id)
+        ManageEmployee.UpdateEmployeeById(_id, name, age, salary)
           .then(
             response => {
-              const data = response.data;
+              const data = response;
               console.log(data)
-              if (data.status !== undefined) {
+              if (data.status === 200) {
                 dispatch(success(data))
               }
             }
@@ -106,27 +106,24 @@ export function UpdatePaymentById(id) {
               error => {
                 const data = error.response;
                 console.log(data)
-                if (data.status === 401) {
-                  console.log(data)
-                }
                 dispatch(failure(data));
               }
           )
       }
-      function success(UpdatePaymentById) { return { type: UpdatePaymentMethod.UPDATE_PAYMENT_BY_ID_SUCCESS, payload: { UpdatePaymentById: UpdatePaymentById } } }
-      function failure(UpdatePaymentById) { return { type: UpdatePaymentMethod.UPDATE_PAYMENT_BY_ID_FAILURE, payload: { UpdatePaymentById: UpdatePaymentById } } }
+      function success(UpdateEmployeeById) { return { type: UpdateEmployeeMethod.UPDATE_EMPLOYEE_BY_ID_SUCCESS, payload: { UpdateEmployeeById: UpdateEmployeeById } } }
+      function failure(UpdateEmployeeById) { return { type: UpdateEmployeeMethod.UPDATE_EMPLOYEE_BY_ID_FAILURE, payload: { UpdateEmployeeById: UpdateEmployeeById } } }
 }
 
-export function DeletePaymentById(id) {
+export function DeleteEmployeeById(_id) {
 
     return dispatch => {
-        ManagePayment.DeletePaymentById(id)
+        ManageEmployee.DeleteEmployeeById(_id)
         .then(
         response => {
             const data = response;
             console.log(data)
-            if (response.status === 200) {
-                dispatch(success(id))
+            if (data.status === 200) {
+                dispatch(success(_id))
                 }
             }
         )
@@ -134,13 +131,10 @@ export function DeletePaymentById(id) {
             error => {
             const data = error.response;
             console.log(data)
-            if (data.status === 401) {
-                console.log(id)
-            }
-                dispatch(failure(data));
+            dispatch(failure(_id));
             }
         )
-        function success(id) { return { type: DeletePaymentMethod.DELETE_PAYMENT_BY_ID_SUCCESS, payload: { DeletePayment: id } } }
-        function failure(id) { return { type: DeletePaymentMethod.DELETE_PAYMENT_BY_ID_FAILURE, payload: { DeletePayment: id } } }
+        function success(_id) { return { type: DeleteEmployeeMethod.DELETE_EMPLOYEE_BY_ID_SUCCESS, payload: { DeleteEmployee: _id } } }
+        function failure(_id) { return { type: DeleteEmployeeMethod.DELETE_EMPLOYEE_BY_ID_FAILURE, payload: { DeleteEmployee: _id } } }
     }
 }

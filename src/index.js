@@ -4,7 +4,7 @@ import {Provider} from 'react-redux';
 import {createStore, applyMiddleware} from 'redux';
 import reducers from './reducer';
 import thunk from 'redux-thunk';
-import App from './components/App';
+import {App} from './components/App';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import "datatables.net-dt/js/dataTables.dataTables";
 import "datatables.net-dt/css/jquery.dataTables.min.css";
@@ -14,7 +14,7 @@ import "datatables.net-dt/css/jquery.dataTables.min.css";
 const store = createStore(reducers, applyMiddleware(thunk));
 
 ReactDOM.render(
-<Provider store={store}>
-    <App/>
-</Provider>
+    <Provider store={store}>
+        <App />
+    </Provider>
 , document.getElementById("root"));
