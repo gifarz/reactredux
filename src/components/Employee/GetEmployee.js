@@ -37,7 +37,7 @@ export const GetEmployee = (props) => {
     }, [])
 
     const handleDetail = (id) => {
-        dispatch(GetEmployeeById(id));
+        GetEmployeeById(id);
         setShow(true)
     }
 
@@ -110,9 +110,9 @@ export const GetEmployee = (props) => {
                 </Modal.Header>
                 <form onSubmit={(e, _id)=> props.PutEmployee(e, _id)}>
                     <Modal.Body>
-                        <input type="text" className="form-control mb-2" name="name" id="name" value={employees.name} onChange={(e)=> props.handleChange(e)} placeholder="Employee Name"/>
-                        <input type="number" className="form-control mb-2" name="age" id="age" value={employees.age} onChange={(e)=> props.handleChange(e)} placeholder="Employee Age"/>
-                        <input type="number" className="form-control mb-2" name="salary" id="salary" value={employees.salary} onChange={(e)=> props.handleChange(e)} placeholder="Employee Salary"/>
+                        <input type="text" className="form-control mb-2" name="name" id="name" value={props.employee.name} onChange={(e)=> props.handleChange(e)} placeholder="Employee Name"/>
+                        <input type="number" className="form-control mb-2" name="age" id="age" value={props.employee.age} onChange={(e)=> props.handleChange(e)} placeholder="Employee Age"/>
+                        <input type="number" className="form-control mb-2" name="salary" id="salary" value={props.employee.salary} onChange={(e)=> props.handleChange(e)} placeholder="Employee Salary"/>
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="primary" type="submit" onHide={handleShow}>

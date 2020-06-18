@@ -4,7 +4,6 @@ import { PostEmployee } from './PostEmployee';
 import { GetEmployee } from './GetEmployee';
 import { ManageEmployee } from '../../service';
 import { UpdateEmployeeById, GetEmployeeById, GetEmployees } from '../../action';
-import $ from 'jquery';
 
 export const Employee = (props) => {
 
@@ -20,26 +19,6 @@ export const Employee = (props) => {
 
     const dispatch = useDispatch();
 
-    const memoFunction = () => {
-        console.log(employee, "memo called")
-    }
-
-    const callBackFunction = useCallback(() => {
-        return employee
-    }, [employee])
-
-    useEffect(()=> {
-
-        setTimeout(() => {
-            $('#datatable').DataTable();
-        }, 3000);
-        
-        dispatch(GetEmployees());
-        setEmployee(callBackFunction)
-
-        //eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [callBackFunction])
-
     const handleChange = (e) => {
         const { name, value } = e.target;
         setEmployee({ 
@@ -47,9 +26,6 @@ export const Employee = (props) => {
             [name]: value 
         });
     }
-
-    useMemo(()=> handleChange, [handleChange])
-
     const CreateEmployee = (e) => {
         e.preventDefault();
         var data = {
@@ -88,7 +64,6 @@ export const Employee = (props) => {
             PutEmployee={PutEmployee}
             handleDetail={handleDetail}
             updateEmployee={ManageEmployee.UpdateEmployeeById}
-            callBackFunction={callBackFunction}
             />
             
         </div>

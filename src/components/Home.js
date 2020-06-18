@@ -9,7 +9,7 @@ export const Home = () => {
             <Carousel.Item>
                 <img
                 className="d-block w-100" 
-                src="https://resources.urbanhire.com/wp-content/uploads/2019/07/Merancang-Employee-Experience-01.png"
+                src="https://i.pinimg.com/originals/6b/96/83/6b968364d97e4e8ce841562778f40d89.jpg"
                 alt="First slide"
                 />
                 <Carousel.Caption>
@@ -20,8 +20,8 @@ export const Home = () => {
             <Carousel.Item>
                 <img
                 className="d-block w-100"
-                src="https://resources.urbanhire.com/wp-content/uploads/2019/07/Merancang-Employee-Experience-01.png"
-                alt="Third slide"
+                src="https://i.pinimg.com/originals/6b/96/83/6b968364d97e4e8ce841562778f40d89.jpg"
+                alt="Second slide"
                 />
 
                 <Carousel.Caption>
@@ -32,7 +32,7 @@ export const Home = () => {
             <Carousel.Item>
                 <img
                 className="d-block w-100"
-                src="https://resources.urbanhire.com/wp-content/uploads/2019/07/Merancang-Employee-Experience-01.png"
+                src="https://i.pinimg.com/originals/6b/96/83/6b968364d97e4e8ce841562778f40d89.jpg"
                 alt="Third slide"
                 />
 

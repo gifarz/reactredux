@@ -51,7 +51,7 @@ export const Login = (props) => {
                         <Button variant="primary" className="w-100">Go somewhere</Button>
                     </ListGroup.Item>
                     <ListGroup.Item className="text-center">
-                        <p>Already have an account ? please register <a href onClick={handleRegister} style={{color: "blue", cursor: "pointer"}}>here</a></p>
+                        <p>Don't have an account yet ? please login <a href onClick={handleRegister} style={{color: "blue", cursor: "pointer"}}>here</a></p>
                     </ListGroup.Item>
                 </ListGroup>
                 </Card>
